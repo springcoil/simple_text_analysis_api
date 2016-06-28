@@ -20,11 +20,12 @@ class BlobSchema(Schema):
 
 blob_schema = BlobSchema()
 
+# Here is the key part for the API a POST method with a Route
 @route("/api/v1/analyze", method="POST")
 def analyze():
     blob = TextBlob(request.json['text'])
     result = blob_schema.dump(blob)
     return result.data
 
-
+# This part just runs the API as such on a certain Port
 run(reloader=True, port=5000)
